@@ -1,4 +1,4 @@
-# Debian 13 Stable + XFCE + X11 — instalação e checklist de estabilidade
+# Debian 13 Stable + XFCE + X11 — exemplo de instalação
 
 > Objetivo: testar e instalar **Debian 13 Stable + XFCE + X11**, confirmar que o hardware funciona e, só depois, substituir o Ubuntu 26 no NVMe.
 >
@@ -826,3 +826,5 @@ custom kernels
 ```
 
 A ideia é manter a máquina **boring e previsível**. Primeiro obtenha estabilidade; depois customize.
+
+Depois de confirmar a instalação, siga [RESTAURACAO.md](RESTAURACAO.md) para importar os dados e as preferências do backup.

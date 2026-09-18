@@ -1,8 +1,11 @@
-# Migração Ubuntu → Debian 13
+# Distrohopping guide
 
-Notas de referência para fazer backup do Ubuntu e testar uma instalação do Debian 13 com XFCE e X11.
+![distrohopping-guide](images/def-not-generated-by-ai-lol.png)
 
-1. [BACKUP.md](BACKUP.md): o que preservar e como conferir as cópias antes de formatar.
-2. [GUIA.md](GUIA.md): teste pelo Live USB, instalação, drivers, programas e verificação final.
+Roteiro pessoal para planejar uma troca de distribuição e recuperar dados e preferências. O exemplo atual é **Ubuntu → Debian 13 com XFCE e X11**, em um PC com GTX 1050 e Windows em outro SSD. Na próxima troca, revise os passos específicos da distribuição e do hardware antes de executá-los.
 
-Os comandos e as escolhas de hardware refletem uma máquina com NVIDIA GTX 1050 e Windows em outro SSD. Confira os nomes dos discos e adapte os caminhos antes de executar. Este repositório contém somente os guias; os backups reais, credenciais e arquivos pessoais devem ficar fora do GitHub.
+1. [Fazer e conferir o backup](BACKUP.md) em outro disco antes de formatar.
+2. [Testar e instalar o Debian](INSTALACAO-DEBIAN.md), conferindo o disco escolhido.
+3. [Restaurar dados, configurações e extensões](RESTAURACAO.md) a partir do backup.
+
+O [inventário da restauração](RESTAURACAO.md#o-que-existe-no-backup-atual) descreve o que foi encontrado em `~/backup-ubuntu`, inclusive pastas vazias. Este repositório guarda **somente instruções**: projetos, vaults, perfis, chaves, bancos e o backup real ficam fora dele.

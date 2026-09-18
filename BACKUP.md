@@ -1,6 +1,6 @@
-# Backup antes de migrar Ubuntu 26 → Debian 13 XFCE
+# Backup antes de trocar de distribuição
 
-> Objetivo: preservar configurações, conexões, projetos, fontes, ferramentas e dados importantes antes de apagar o Ubuntu 26 e instalar Debian 13.
+> Objetivo: preservar configurações, conexões, projetos, fontes, ferramentas e dados importantes antes de apagar o sistema atual. O exemplo deste guia usa Ubuntu → Debian 13.
 >
 > Estratégia recomendada: **backup seletivo + backup completo do `/home` como segurança**.
 
@@ -458,6 +458,8 @@ gnome-extensions list \
 ```
 
 Isso serve apenas para consulta futura.
+
+O backup usado neste roteiro também contém `atalhos/` com os atalhos exportados do GNOME e `ptyxis-para-kitty/` com a configuração e as sessões convertidas para o Kitty. Ao copiar o backup para outro disco, mantenha essas duas pastas junto das demais; os READMEs dentro delas explicam o que foi exportado.
 
 ---
 
