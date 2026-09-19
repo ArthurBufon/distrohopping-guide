@@ -495,7 +495,9 @@ sudo apt install \
   zsh \
   remmina \
   remmina-plugin-rdp \
-  mpv
+  mpv \
+  qbittorrent \
+  redshift
 
 ```
 
@@ -644,9 +646,47 @@ mpv --hwdec=auto video.mkv
 
 ---
 
+## 17. qBittorrent
+
+Abra o cliente de torrents:
+
+```bash
+qbittorrent
+```
+
+---
+
+## 18. Redshift (luz noturna)
+
+Crie o diretório de configuração e salve o conteúdo abaixo em `~/.config/redshift/redshift.conf`:
+
+```bash
+mkdir -p "$HOME/.config/redshift"
+```
+
+```ini
+[redshift]
+temp-day=4400
+temp-night=4400
+transition=0
+location-provider=manual
+
+[manual]
+lat=0
+lon=0
+```
+
+Teste a configuração:
+
+```bash
+redshift -c "$HOME/.config/redshift/redshift.conf"
+```
+
+---
+
 # PARTE F — Docker / Laravel
 
-## 17. Docker Engine
+## 19. Docker Engine
 
 Prefira **Docker Engine**, não Docker Desktop.
 
@@ -723,7 +763,7 @@ docker compose version
 
 ---
 
-## 18. Laravel
+## 20. Laravel
 
 O Sail fornece PHP, MySQL e os demais serviços dentro dos containers, mas o host ainda deve ter PHP, Composer e Node/NVM para instalar e preparar as dependências dos projetos.
 
@@ -754,7 +794,7 @@ PHP, MySQL e os demais serviços de execução continuam isolados nos containers
 
 # PARTE G — Verificação final
 
-## 19. Checklist
+## 21. Checklist
 
 Antes de considerar a migração concluída:
 
@@ -792,6 +832,8 @@ Antes de considerar a migração concluída:
 ### Multimídia
 
 - MPV;
+- qBittorrent;
+- Redshift (luz noturna);
 - `.mkv`;
 - áudio;
 - vídeo em tela cheia.
