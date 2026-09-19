@@ -520,6 +520,38 @@ Em **Configurações → Teclado → Atalhos de aplicativos**, confira o atalho 
 
 Para que programas que usam o comando genérico do Debian também abram o Kitty, execute `sudo update-alternatives --config x-terminal-emulator` e selecione a entrada do Kitty, caso esteja disponível.
 
+### Sugestões e autocomplete no Zsh
+
+Instale os plugins disponíveis nos repositórios do Debian:
+
+```bash
+sudo apt install zsh-autosuggestions zsh-syntax-highlighting
+```
+
+O pacote `zsh-completions` é opcional e pode não existir nos repositórios configurados. O autocomplete básico já faz parte do próprio Zsh.
+
+No `~/.zshrc`, adicione ou reative estas linhas, sem duplicá-las se já existirem:
+
+```zsh
+# Autocomplete nativo do Zsh
+autoload -Uz compinit
+compinit
+
+# Sugestões baseadas no histórico
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Destaque de sintaxe — deve ficar por último
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+```
+
+Recarregue a configuração:
+
+```bash
+source ~/.zshrc
+```
+
+O `Tab` completa comandos e caminhos; sugestões do histórico aparecem em cinza e podem ser aceitas com `→` ou `End`.
+
 ---
 
 ## 15. Remmina

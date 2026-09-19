@@ -121,7 +121,7 @@ tar --zstd -x -f "$BACKUP_ARCHIVE" -C "$HOME" \
 zsh -n "$HOME/.zshrc"
 ```
 
-O `.zshrc` antigo referencia Starship, Cursor, NVM, `zsh-autosuggestions`, `zsh-syntax-highlighting` e `~/bin`. Se esses componentes ainda não existirem, comente as linhas e identifique-as como provenientes do backup; reative-as somente depois de instalar as dependências. O arquivo restaurado nesta migração foi tratado dessa forma.
+O `.zshrc` antigo referencia Starship, Cursor, NVM, `zsh-autosuggestions`, `zsh-syntax-highlighting` e `~/bin`. Se esses componentes ainda não existirem, comente as linhas e identifique-as como provenientes do backup; reative-as somente depois de instalar as dependências. Para habilitar sugestões e destaque no Debian, consulte [Sugestões e autocomplete no Zsh](INSTALACAO-DEBIAN.md#sugestoes-e-autocomplete-no-zsh). O arquivo restaurado nesta migração foi tratado dessa forma.
 
 As chaves estão em `ssh/.ssh/`. Copie sem substituir arquivos SSH já criados no sistema novo:
 
