@@ -492,6 +492,7 @@ sudo apt install \
   build-essential \
   ca-certificates \
   gnupg \
+  zsh \
   remmina \
   remmina-plugin-rdp \
   mpv
@@ -503,7 +504,7 @@ sudo apt install \
 Instale pelo repositório do Debian:
 
 ```bash
-sudo apt install kitty
+sudo apt install kitty zsh
 kitty
 ```
 
