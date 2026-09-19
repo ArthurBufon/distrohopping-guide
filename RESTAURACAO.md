@@ -2,6 +2,8 @@
 
 Instale o sistema e confirme que disco, rede e sessão gráfica funcionam antes de importar dados. Este roteiro usa o backup feito no Ubuntu para restaurar no Debian 13 com XFCE. Em outra distribuição, adapte os pacotes e os caminhos dos aplicativos.
 
+Temas, dotfiles e outras personalizações do rice não fazem parte da restauração básica. Se quiser mantê-los, use um repositório separado e aplique o rice somente depois de instalar e validar o sistema básico.
+
 ## Localize o backup
 
 Mantenha o backup em um disco que **não foi formatado**. Ajuste o caminho abaixo para o local onde ele está montado; `~/backup-ubuntu` também serve se você já o copiou para o novo sistema.
@@ -85,7 +87,7 @@ tar --zstd -x -f "$BACKUP_ARCHIVE" -C "$HOME/.config" \
   --strip-components=2 'backup-ubuntu/ptyxis-para-kitty/kitty'
 ```
 
-Isso restaura `kitty.conf`, `mocha.conf` e as dez sessões (`local-*`, `remoto-*` e `padrao.kitty-session`). O `kitty.conf` inicia no perfil `arthur` e oferece `F7`, depois `P`, para escolher uma sessão. As sessões remotas dependem das chaves e do `~/.ssh/config` já restaurados.
+Isso restaura `kitty.conf` e as dez sessões (`local-*`, `remoto-*` e `padrao.kitty-session`). O `kitty.conf` inicia no perfil `arthur` e oferece `F7`, depois `P`, para escolher uma sessão. As sessões remotas dependem das chaves e do `~/.ssh/config` já restaurados. Personalizações visuais devem ser aplicadas depois, a partir do repositório separado de dotfiles.
 
 Leia `ptyxis-para-kitty/README.md` **no backup**: as sessões têm caminhos `~/projects/...` e conexões SSH que podem precisar de ajuste. A fonte usada é JetBrainsMono Nerd Font. Restaure as fontes de usuário encontradas no backup:
 
@@ -111,7 +113,7 @@ xfconf-query -c xfce4-keyboard-shortcuts \
   -p '/commands/custom/<Super>Return' -n -t string -s kitty
 ```
 
-Em `shell/dotfiles/` estão `.bashrc`, `.zshrc` e `.profile`; em `shell/starship.toml` está o tema do prompt. Compare cada arquivo com o novo sistema antes de copiar. Por exemplo, use `diff -u "$HOME/.zshrc" "$BACKUP/shell/dotfiles/.zshrc"` e só então copie os trechos desejados. Faça o mesmo com `git/.gitconfig`; o backup também tem `configs/config-completo/starship.toml`.
+Em `shell/dotfiles/` estão `.bashrc`, `.zshrc` e `.profile`; em `shell/starship.toml` está a configuração do prompt. Compare cada arquivo com o novo sistema antes de copiar. Por exemplo, use `diff -u "$HOME/.zshrc" "$BACKUP/shell/dotfiles/.zshrc"` e só então copie os trechos desejados. Faça o mesmo com `git/.gitconfig`; o backup também tem `configs/config-completo/starship.toml`.
 
 Para restaurar somente o `.zshrc` diretamente do arquivo compactado:
 

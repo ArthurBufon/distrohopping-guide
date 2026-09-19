@@ -860,4 +860,4 @@ custom kernels
 
 A ideia é manter a máquina **boring e previsível**. Primeiro obtenha estabilidade; depois customize.
 
-Depois de confirmar a instalação, siga [RESTAURACAO.md](RESTAURACAO.md) para importar os dados e as preferências do backup.
+Depois de confirmar a instalação, siga [RESTAURACAO.md](RESTAURACAO.md) para importar os dados e as preferências do backup. Mantenha temas, dotfiles e personalizações do rice em um repositório separado e aplique-os somente depois que a instalação básica, os drivers, os aplicativos essenciais e os testes de estabilidade estiverem concluídos.
