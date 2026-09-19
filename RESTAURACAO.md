@@ -165,7 +165,26 @@ rsync -a "$BACKUP/remmina/config-remmina/" "$HOME/.config/remmina/"
 rsync -a "$BACKUP/remmina/local-share-remmina/" "$HOME/.local/share/remmina/"
 ```
 
-Confira as conexões ao reabrir. Senhas podem depender do chaveiro do sistema anterior e precisar ser informadas novamente.
+Quando o backup estiver no arquivo `~/Downloads/backup-ubuntu.tar.zst`, feche o Remmina, preserve a configuração atual e extraia somente as pastas do aplicativo:
+
+```bash
+BACKUP_ARCHIVE="$HOME/Downloads/backup-ubuntu.tar.zst"
+STAMP=$(date +%Y%m%d-%H%M%S)
+
+cp -a "$HOME/.config/remmina" "$HOME/.config/remmina.before-restore-$STAMP" 2>/dev/null
+cp -a "$HOME/.local/share/remmina" "$HOME/.local/share/remmina.before-restore-$STAMP" 2>/dev/null
+mkdir -p "$HOME/.config/remmina" "$HOME/.local/share/remmina"
+
+tar --zstd -x -f "$BACKUP_ARCHIVE" \
+  -C "$HOME/.config/remmina" \
+  --strip-components=3 'backup-ubuntu/remmina/config-remmina'
+
+tar --zstd -x -f "$BACKUP_ARCHIVE" \
+  -C "$HOME/.local/share/remmina" \
+  --strip-components=3 'backup-ubuntu/remmina/local-share-remmina'
+```
+
+Abra o Remmina e confira os perfis e as conexões restaurados. Senhas podem depender do chaveiro do sistema anterior e precisar ser informadas novamente.
 
 ## 5. Outros aplicativos e preferências
 
