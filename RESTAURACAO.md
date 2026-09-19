@@ -13,6 +13,17 @@ test -d "$BACKUP/obsidian/vaults" && ls "$BACKUP"
 
 Não continue se o teste falhar. Antes de mesclar arquivos, confira o destino e faça uma cópia das configurações novas que você já alterou. Nos comandos com `rsync --ignore-existing`, arquivos novos são copiados e arquivos que já existem no destino são preservados; compare esses conflitos manualmente.
 
+### Quando o backup estiver em um arquivo `.tar.zst`
+
+Nesta migração, o backup foi transferido como `~/Downloads/backup-ubuntu.tar.zst`. Não é necessário despejar o arquivo inteiro sobre o novo `/home`: liste o conteúdo e extraia somente o aplicativo ou dado que será restaurado.
+
+```bash
+BACKUP_ARCHIVE="$HOME/Downloads/backup-ubuntu.tar.zst"
+tar --zstd -tf "$BACKUP_ARCHIVE" | sed -n '1,40p'
+```
+
+Os caminhos dentro do arquivo começam com `backup-ubuntu/`. Para usar os comandos desta página, extraia o arquivo inteiro para uma pasta temporária, ou adapte os comandos com `tar --zstd -xOf`/`--strip-components` conforme os exemplos da seção de Kitty e shell abaixo.
+
 ## O que existe no backup atual
 
 Inventário de `~/backup-ubuntu` em 18/09/2026. A pasta pode mudar depois de outro backup.
@@ -59,12 +70,22 @@ rsync -a --ignore-existing "$BACKUP/obsidian/vaults/" "$HOME/Documents/Obsidian/
 
 ## 3. Terminal, shell, Git e SSH
 
-Instale o Kitty conforme [o guia de instalação](INSTALACAO-DEBIAN.md#terminal-kitty). Com o aplicativo fechado, copie sua configuração e sessões:
+Instale o Kitty e o Zsh conforme [o guia de instalação](INSTALACAO-DEBIAN.md#terminal-kitty). Com o aplicativo fechado, copie sua configuração e sessões:
 
 ```bash
 mkdir -p "$HOME/.config/kitty"
-rsync -a "$BACKUP/ptyxis-para-kitty/kitty/" "$HOME/.config/kitty/"
+rsync -a --ignore-existing "$BACKUP/ptyxis-para-kitty/kitty/" "$HOME/.config/kitty/"
 ```
+
+Se o backup ainda estiver compactado, a restauração seletiva usada nesta migração é:
+
+```bash
+mkdir -p "$HOME/.config"
+tar --zstd -x -f "$BACKUP_ARCHIVE" -C "$HOME/.config" \
+  --strip-components=2 'backup-ubuntu/ptyxis-para-kitty/kitty'
+```
+
+Isso restaura `kitty.conf`, `mocha.conf` e as dez sessões (`local-*`, `remoto-*` e `padrao.kitty-session`). O `kitty.conf` inicia no perfil `arthur` e oferece `F7`, depois `P`, para escolher uma sessão. As sessões remotas dependem das chaves e do `~/.ssh/config` já restaurados.
 
 Leia `ptyxis-para-kitty/README.md` **no backup**: as sessões têm caminhos `~/projects/...` e conexões SSH que podem precisar de ajuste. A fonte usada é JetBrainsMono Nerd Font. Restaure as fontes de usuário encontradas no backup:
 
@@ -74,9 +95,33 @@ rsync -a --ignore-existing "$BACKUP/configs/local-share-completo/fonts/" "$HOME/
 fc-cache -f
 ```
 
-No XFCE, configure `Super+Enter` para abrir o Kitty.
+Com o arquivo compactado, use:
+
+```bash
+mkdir -p "$HOME/.local/share/fonts"
+tar --zstd -x -f "$BACKUP_ARCHIVE" -C "$HOME/.local/share/fonts" \
+  --strip-components=3 'backup-ubuntu/configs/local-share-completo/fonts'
+fc-cache -f
+```
+
+No XFCE, configure `Super+Enter` para abrir o Kitty. O atalho usado nesta migração foi:
+
+```bash
+xfconf-query -c xfce4-keyboard-shortcuts \
+  -p '/commands/custom/<Super>Return' -n -t string -s kitty
+```
 
 Em `shell/dotfiles/` estão `.bashrc`, `.zshrc` e `.profile`; em `shell/starship.toml` está o tema do prompt. Compare cada arquivo com o novo sistema antes de copiar. Por exemplo, use `diff -u "$HOME/.zshrc" "$BACKUP/shell/dotfiles/.zshrc"` e só então copie os trechos desejados. Faça o mesmo com `git/.gitconfig`; o backup também tem `configs/config-completo/starship.toml`.
+
+Para restaurar somente o `.zshrc` diretamente do arquivo compactado:
+
+```bash
+tar --zstd -x -f "$BACKUP_ARCHIVE" -C "$HOME" \
+  --strip-components=3 'backup-ubuntu/shell/dotfiles/.zshrc'
+zsh -n "$HOME/.zshrc"
+```
+
+O `.zshrc` antigo referencia Starship, Cursor, NVM, `zsh-autosuggestions`, `zsh-syntax-highlighting` e `~/bin`. Se esses componentes ainda não existirem, comente as linhas e identifique-as como provenientes do backup; reative-as somente depois de instalar as dependências. O arquivo restaurado nesta migração foi tratado dessa forma.
 
 As chaves estão em `ssh/.ssh/`. Copie sem substituir arquivos SSH já criados no sistema novo:
 
