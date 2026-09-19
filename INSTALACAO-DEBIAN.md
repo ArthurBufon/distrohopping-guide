@@ -552,6 +552,56 @@ source ~/.zshrc
 
 O `Tab` completa comandos e caminhos; sugestões do histórico aparecem em cinza e podem ser aceitas com `→` ou `End`.
 
+### Ferramentas locais para projetos Laravel
+
+Mesmo usando Docker/Sail para executar os aplicativos, instale no host o PHP, o Composer e o Node.js. Eles são necessários para preparar os projetos, instalar dependências e executar comandos antes de subir os containers.
+
+Instale PHP 8.4, extensões comuns do Laravel e Composer:
+
+```bash
+sudo apt install \
+  php-cli \
+  php-common \
+  php-mbstring \
+  php-xml \
+  php-curl \
+  php-zip \
+  php-mysql \
+  php-sqlite3 \
+  php-bcmath \
+  php-intl \
+  php-gd \
+  php-opcache \
+  composer
+```
+
+Instale o NVM como usuário normal, sem `sudo`. Se `NVM_DIR` estiver definido para um caminho antigo, remova-o antes da instalação:
+
+```bash
+unset NVM_DIR
+PROFILE="$HOME/.zshrc" bash -c \
+  'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.7/install.sh | bash'
+source "$HOME/.zshrc"
+```
+
+Instale as versões usadas pelos projetos e escolha uma versão padrão:
+
+```bash
+nvm install 22
+nvm install 24
+nvm alias default 22
+nvm use 22
+```
+
+Confira a instalação antes de continuar:
+
+```bash
+php -v
+composer --version
+node -v
+npm -v
+```
+
 ---
 
 ## 15. Remmina
@@ -599,6 +649,8 @@ mpv --hwdec=auto video.mkv
 ## 17. Docker Engine
 
 Prefira **Docker Engine**, não Docker Desktop.
+
+Instale e valide as ferramentas locais da seção anterior antes de configurar o Docker. Depois de PHP, Composer, Node/NVM e Docker estarem funcionando, valide cada projeto com suas dependências e execute-o pelo Sail.
 
 Use o repositório oficial da Docker para Debian.
 
@@ -673,7 +725,7 @@ docker compose version
 
 ## 18. Laravel
 
-Se seus projetos usam Sail/Docker, você não precisa instalar versões específicas de PHP/MySQL diretamente no Debian.
+O Sail fornece PHP, MySQL e os demais serviços dentro dos containers, mas o host ainda deve ter PHP, Composer e Node/NVM para instalar e preparar as dependências dos projetos.
 
 Dentro de um projeto:
 
@@ -696,7 +748,7 @@ docker ps
 
 ```
 
-Se PHP, MySQL etc. estão nos containers, o host Debian permanece simples e estável.
+PHP, MySQL e os demais serviços de execução continuam isolados nos containers; as ferramentas locais servem para preparar os projetos antes de subir o Sail.
 
 ---
 
