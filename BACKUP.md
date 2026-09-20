@@ -57,7 +57,7 @@ As seções de aplicativos e ferramentas são condicionais: execute somente as q
 
 ---
 
-# 1. Criar uma pasta principal de backup
+## 1. Criar uma pasta principal de backup
 
 Escolha um disco externo, outro SSD ou pendrive grande.
 
@@ -86,7 +86,7 @@ backup-ubuntu/
 
 ---
 
-# 2. Projetos de desenvolvimento
+## 2. Projetos de desenvolvimento
 
 Copie seus projetos completos.
 
@@ -111,7 +111,7 @@ Ajuste o caminho conforme sua estrutura real.
 
 ---
 
-# 3. SSH
+## 3. SSH
 
 Muito importante.
 
@@ -140,7 +140,7 @@ Não aplique `chmod 600` em arquivos `.pub`.
 
 ---
 
-# 4. Git
+## 4. Git
 
 Copie:
 
@@ -156,7 +156,7 @@ cp -a ~/.config/git ~/backup-ubuntu/git/
 
 ---
 
-# 5. Cursor
+## 5. Cursor
 
 Antes de copiar:
 
@@ -201,7 +201,7 @@ Arquivos particularmente importantes:
 
 ---
 
-# 6. Remmina
+## 6. Remmina
 
 Feche o Remmina antes do backup.
 
@@ -227,9 +227,9 @@ Isso pode preservar:
 
 ---
 
-# 7. Obsidian
+## 7. Obsidian
 
-## Vaults
+### Vaults
 
 Copie todos os seus vaults completos.
 
@@ -258,7 +258,7 @@ cp -a ~/Documentos/Obsidian ~/backup-ubuntu/obsidian/
 
 Ajuste o caminho.
 
-## Configuração global
+### Configuração global
 
 Também copie:
 
@@ -268,7 +268,7 @@ cp -a ~/.config/obsidian ~/backup-ubuntu/obsidian/ 2>/dev/null
 
 ---
 
-# 8. Fontes
+## 8. Fontes
 
 Fontes instaladas pelo usuário:
 
@@ -290,7 +290,7 @@ fc-list > ~/backup-ubuntu/listas/fontes-instaladas.txt
 
 ---
 
-# 9. Shell / Terminal
+## 9. Shell / Terminal
 
 Salve:
 
@@ -315,21 +315,21 @@ cp ~/.config/starship.toml ~/backup-ubuntu/shell/ 2>/dev/null
 
 ---
 
-# 10. Docker
+## 10. Docker
 
-## Ver containers
+### Ver containers
 
 ```bash
 docker ps -a
 ```
 
-## Ver volumes
+### Ver volumes
 
 ```bash
 docker volume ls
 ```
 
-## Ver imagens
+### Ver imagens
 
 ```bash
 docker images
@@ -345,7 +345,7 @@ docker images > ~/backup-ubuntu/listas/docker-images.txt
 
 ---
 
-# 11. Bancos MySQL
+## 11. Bancos MySQL
 
 Se os bancos importantes estão em Docker, prefira gerar dumps SQL.
 
@@ -374,7 +374,7 @@ Não confie somente em copiar containers.
 
 ---
 
-# 12. Docker volumes importantes
+## 12. Docker volumes importantes
 
 Se algum projeto guarda dados importantes somente em volumes Docker, faça backup deles individualmente.
 
@@ -396,7 +396,7 @@ docker run --rm \
 
 ---
 
-# 13. Pacotes APT instalados
+## 13. Pacotes APT instalados
 
 Não copie os pacotes propriamente ditos.
 
@@ -422,7 +422,7 @@ Ubuntu e Debian possuem diferenças de nomes e versões.
 
 ---
 
-# 14. Flatpak
+## 14. Flatpak
 
 Lista:
 
@@ -441,7 +441,7 @@ Restaurar isso deve ser feito seletivamente.
 
 ---
 
-# 15. Snap
+## 15. Snap
 
 Se usa Snap:
 
@@ -460,7 +460,7 @@ Não é necessário levar o Snap para o Debian.
 
 ---
 
-# 16. Configurações de aplicativos
+## 16. Configurações de aplicativos
 
 Configurações de usuário geralmente ficam em:
 
@@ -490,7 +490,7 @@ Depois restaure **somente aplicativos específicos** conforme necessário.
 
 ---
 
-# 17. GNOME / atalhos atuais do Ubuntu
+## 17. GNOME / atalhos atuais do Ubuntu
 
 Como você vai para XFCE, não restaure as configurações do GNOME por inteiro.
 
@@ -514,7 +514,7 @@ O backup usado neste roteiro também contém `atalhos/` com os atalhos exportado
 
 ---
 
-# 18. VS Code
+## 18. VS Code
 
 Se também usa VS Code:
 
@@ -531,7 +531,7 @@ code --list-extensions \
 
 ---
 
-# 19. Node / npm
+## 19. Node / npm
 
 Liste pacotes globais:
 
@@ -550,7 +550,7 @@ Em geral é melhor reinstalar NVM/Node limpos no Debian.
 
 ---
 
-# 20. Composer
+## 20. Composer
 
 Liste pacotes globais:
 
@@ -567,7 +567,7 @@ cp -a ~/.config/composer ~/backup-ubuntu/configs/ 2>/dev/null
 
 ---
 
-# 21. Flutter
+## 21. Flutter
 
 Confira instalação:
 
@@ -588,7 +588,7 @@ Melhor prática:
 
 ---
 
-# 22. Android / Flutter signing keys
+## 22. Android / Flutter signing keys
 
 Se desenvolve Android, verifique:
 
@@ -614,7 +614,7 @@ Não perca chaves de assinatura de apps publicados.
 
 ---
 
-# 23. Credenciais e secrets
+## 23. Credenciais e secrets
 
 Verifique manualmente:
 
@@ -647,7 +647,7 @@ Revise os resultados antes de formatar.
 
 ---
 
-# 24. Navegador
+## 24. Navegador
 
 Se usa sincronização do Chrome/Firefox, confirme que está logado e sincronizado.
 
@@ -673,7 +673,7 @@ Restaurar perfis completos entre distribuições deve ser feito com cuidado.
 
 ---
 
-# 25. Lista de serviços habilitados
+## 25. Lista de serviços habilitados
 
 Útil como referência:
 
@@ -684,7 +684,7 @@ systemctl list-unit-files --state=enabled \
 
 ---
 
-# 26. Cron jobs
+## 26. Cron jobs
 
 Usuário atual:
 
@@ -701,7 +701,7 @@ sudo cp -a /etc/cron.d ~/backup-ubuntu/configs/cron.d 2>/dev/null
 
 ---
 
-# 27. Hosts personalizados
+## 27. Hosts personalizados
 
 Se você editou:
 
@@ -718,7 +718,7 @@ sudo chown "$USER":"$USER" ~/backup-ubuntu/configs/hosts
 
 ---
 
-# 28. Lista geral do hardware
+## 28. Lista geral do hardware
 
 Muito útil para comparar Ubuntu vs Debian.
 
@@ -741,7 +741,7 @@ uname -a > ~/backup-ubuntu/listas/uname.txt
 
 ---
 
-# 29. Backup completo do HOME
+## 29. Backup completo do HOME
 
 Além do backup seletivo, recomendo fortemente ter uma cópia completa do seu `/home`.
 
@@ -763,7 +763,7 @@ Ajuste o caminho do destino.
 
 Isso preserva inclusive arquivos escondidos.
 
-## Importante
+### Importante
 
 Não copie esse `/home` inteiro de volta por cima do Debian.
 
@@ -773,7 +773,7 @@ Use-o como:
 
 ---
 
-# 30. Verificar o backup
+## 30. Verificar o backup
 
 Antes de formatar:
 
@@ -797,9 +797,9 @@ Abra alguns arquivos aleatórios para confirmar que são legíveis.
 
 ---
 
-# Checklist final antes de apagar o Ubuntu
+## Checklist final antes de apagar o Ubuntu
 
-## Desenvolvimento
+### Desenvolvimento
 
 - [ ] projetos;
 - [ ] `.env`;
@@ -809,7 +809,7 @@ Abra alguns arquivos aleatórios para confirmar que são legíveis.
 - [ ] Android signing keys;
 - [ ] scripts.
 
-## Cursor
+### Cursor
 
 - [ ] `~/.config/Cursor`;
 - [ ] `~/.cursor`;
@@ -818,7 +818,7 @@ Abra alguns arquivos aleatórios para confirmar que são legíveis.
 - [ ] keybindings;
 - [ ] snippets.
 
-## Aplicativos
+### Aplicativos
 
 - [ ] Remmina;
 - [ ] Obsidian;
@@ -826,14 +826,14 @@ Abra alguns arquivos aleatórios para confirmar que são legíveis.
 - [ ] navegador;
 - [ ] VS Code, se usado.
 
-## Docker
+### Docker
 
 - [ ] lista de containers;
 - [ ] lista de volumes;
 - [ ] dumps MySQL;
 - [ ] volumes importantes.
 
-## Sistema
+### Sistema
 
 - [ ] lista APT;
 - [ ] lista Flatpak;
@@ -844,7 +844,7 @@ Abra alguns arquivos aleatórios para confirmar que são legíveis.
 - [ ] `/etc/hosts`;
 - [ ] hardware atual.
 
-## Segurança
+### Segurança
 
 - [ ] cópia completa do `/home`;
 - [ ] backup armazenado fora do NVMe que será formatado;
@@ -853,7 +853,7 @@ Abra alguns arquivos aleatórios para confirmar que são legíveis.
 
 ---
 
-# Regra para restaurar no Debian
+## Regra para restaurar no Debian
 
 Evite:
 
