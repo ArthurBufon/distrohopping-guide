@@ -4,9 +4,11 @@
 
 Roteiro pessoal para planejar uma troca de distribuição e recuperar dados e preferências. O exemplo atual é **Ubuntu → Debian 13 com XFCE e X11**, em um PC com GTX 1050 e Windows em outro SSD. Na próxima troca, revise os passos específicos da distribuição e do hardware antes de executá-los.
 
-1. [Fazer e conferir o backup](BACKUP.md) em outro disco antes de formatar.
-2. [Testar e instalar o Debian](INSTALACAO-DEBIAN.md), conferindo o disco escolhido.
-3. [Restaurar dados, configurações e extensões](RESTAURACAO.md) a partir do backup.
+| Etapa | Documento | Quando usar | Resultado esperado |
+| --- | --- | --- | --- |
+| 1. Backup | [BACKUP.md](BACKUP.md) | Antes de formatar o sistema antigo | Dados importantes copiados e conferidos em outro disco |
+| 2. Instalação | [INSTALACAO-DEBIAN.md](INSTALACAO-DEBIAN.md) | Depois de validar o backup | Debian testado, instalado e com hardware e programas básicos verificados |
+| 3. Restauração | [RESTAURACAO.md](RESTAURACAO.md) | Depois de confirmar a estabilidade do sistema novo | Dados e configurações necessários importados seletivamente |
 
 Temas, dotfiles e demais personalizações visuais devem ficar em um repositório separado. Faça o rice somente depois de instalar e validar toda a base do sistema; a migração e o rice são etapas independentes.
 
