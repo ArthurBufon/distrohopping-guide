@@ -4,6 +4,17 @@
 >
 > Estratégia recomendada: **backup seletivo + backup completo do `/home` como segurança**.
 
+## Caminho rápido
+
+Antes de apagar o sistema antigo, sempre:
+
+1. escolha um destino fora do disco que será formatado;
+2. copie dados únicos, projetos e credenciais que não possam ser recriados;
+3. mantenha uma cópia completa do `/home` como segurança;
+4. abra arquivos do backup e confira se eles estão legíveis.
+
+As seções de aplicativos e ferramentas são condicionais: execute somente as que correspondem ao que você usa.
+
 ---
 
 # 1. Criar uma pasta principal de backup
