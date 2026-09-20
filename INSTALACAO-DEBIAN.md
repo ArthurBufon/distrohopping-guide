@@ -47,9 +47,9 @@ Anote qual é:
 
 ---
 
-# PARTE A — Testar pelo Live USB
+## PARTE A — Testar pelo Live USB
 
-## 2. Inicialize pelo pendrive
+### 2. Inicialize pelo pendrive
 
 Reinicie o PC e abra o Boot Menu da placa-mãe.
 
@@ -74,7 +74,7 @@ Não clique em instalar ainda.
 
 ---
 
-## 3. Teste básico do hardware
+### 3. Teste básico do hardware
 
 Use o Debian Live por pelo menos 30–60 minutos.
 
@@ -91,7 +91,7 @@ Teste:
 - deixar o PC parado alguns minutos;
 - reiniciar pelo menu normalmente.
 
-### Ver hardware detectado
+#### Ver hardware detectado
 
 ```bash
 lspci -k
@@ -139,9 +139,9 @@ Se o Debian Live ficar estável enquanto o Ubuntu 26 costuma congelar, é um ót
 
 ---
 
-# PARTE B — Instalação no NVMe
+## PARTE B — Instalação no NVMe
 
-## 4. Proteja o Windows
+### 4. Proteja o Windows
 
 A opção mais segura é:
 
@@ -157,7 +157,7 @@ Se não quiser desconectar o SSD, confira **com muita atenção** o modelo/taman
 
 ---
 
-## 5. Instale o Debian
+### 5. Instale o Debian
 
 Inicie novamente pelo Live USB e abra:
 
@@ -168,7 +168,7 @@ Install Debian
 
 No instalador:
 
-### Idioma
+#### Idioma
 
 Pode usar:
 
@@ -179,7 +179,7 @@ Português (Brasil)
 
 ou inglês, se preferir mensagens técnicas em inglês.
 
-### Desktop
+#### Desktop
 
 Use:
 
@@ -188,7 +188,7 @@ XFCE
 
 ```
 
-### Disco
+#### Disco
 
 Escolha **somente o NVMe onde hoje está o Ubuntu 26**.
 
@@ -203,7 +203,7 @@ Confirme pelo **modelo e capacidade**, não apenas por `/dev/nvme0n1`.
 
 **Não selecione o SSD do Windows.**
 
-### Filesystem
+#### Filesystem
 
 Para simplicidade:
 
@@ -214,7 +214,7 @@ ext4
 
 Não precisa de Btrfs, ZFS ou particionamento complexo para esse objetivo.
 
-### Bootloader
+#### Bootloader
 
 Instale no NVMe do Debian.
 
@@ -222,9 +222,9 @@ Finalize a instalação e reinicie sem o pendrive.
 
 ---
 
-# PARTE C — Primeira inicialização
+## PARTE C — Primeira inicialização
 
-## 6. Atualize tudo
+### 6. Atualize tudo
 
 ```bash
 sudo apt update
@@ -243,7 +243,7 @@ uname -r
 
 ---
 
-## 7. Confirme os repositórios de firmware
+### 7. Confirme os repositórios de firmware
 
 Debian 13 já inclui firmware não livre nas imagens oficiais.
 
@@ -279,9 +279,9 @@ sudo apt update
 
 ---
 
-# PARTE D — Drivers e hardware
+## PARTE D — Drivers e hardware
 
-## 8. CPU / microcode
+### 8. CPU / microcode
 
 Descubra a CPU:
 
@@ -290,14 +290,14 @@ lscpu | grep "Vendor ID"
 
 ```
 
-### AMD
+#### AMD
 
 ```bash
 sudo apt install amd64-microcode
 
 ```
 
-### Intel
+#### Intel
 
 ```bash
 sudo apt install intel-microcode
@@ -313,7 +313,7 @@ sudo reboot
 
 ---
 
-## 9. NVIDIA GTX 1050
+### 9. NVIDIA GTX 1050
 
 Primeiro veja o que está sendo usado:
 
@@ -334,7 +334,7 @@ nvidia-detect
 
 A GTX 1050 é da geração **Pascal**.
 
-### Importante
+#### Importante
 
 Não baixe o instalador `.run` manualmente do site da NVIDIA.
 
@@ -369,7 +369,7 @@ Kernel driver in use: nvidia
 
 ```
 
-### Observação importante em 2026
+#### Observação importante em 2026
 
 O driver NVIDIA 550 empacotado no Debian 13 suporta a GTX 1050, mas essa série deixou de receber manutenção upstream.
 
@@ -384,7 +384,7 @@ Não misture drivers de Debian 12, Debian Testing ou instaladores `.run`.
 
 ---
 
-## 10. Rede
+### 10. Rede
 
 Veja interfaces:
 
@@ -411,7 +411,7 @@ Se funciona, não mexa em driver.
 
 ---
 
-## 11. Áudio
+### 11. Áudio
 
 Liste saídas:
 
@@ -431,7 +431,7 @@ Reproduza algum vídeo/música.
 
 ---
 
-## 12. Bluetooth
+### 12. Bluetooth
 
 Confira:
 
@@ -458,7 +458,7 @@ Teste seu QCY T13 e reinicie o computador pelo menos uma vez com ele pareado.
 
 ---
 
-## 13. NVMe / SSD
+### 13. NVMe / SSD
 
 Liste:
 
@@ -491,9 +491,9 @@ sudo smartctl -a /dev/nvme0
 
 ---
 
-# PARTE E — Programas de trabalho
+## PARTE E — Programas de trabalho
 
-## 14. Pacotes básicos
+### 14. Pacotes básicos
 
 ```bash
 sudo apt install \
@@ -514,7 +514,7 @@ sudo apt install \
 
 ```
 
-### Terminal Kitty
+#### Terminal Kitty
 
 Instale pelo repositório do Debian:
 
@@ -535,7 +535,7 @@ Em **Configurações → Teclado → Atalhos de aplicativos**, confira o atalho 
 
 Para que programas que usam o comando genérico do Debian também abram o Kitty, execute `sudo update-alternatives --config x-terminal-emulator` e selecione a entrada do Kitty, caso esteja disponível.
 
-### Sugestões e autocomplete no Zsh
+#### Sugestões e autocomplete no Zsh
 
 Instale os plugins disponíveis nos repositórios do Debian:
 
@@ -567,7 +567,7 @@ source ~/.zshrc
 
 O `Tab` completa comandos e caminhos; sugestões do histórico aparecem em cinza e podem ser aceitas com `→` ou `End`.
 
-### Ferramentas locais para projetos Laravel
+#### Ferramentas locais para projetos Laravel
 
 Mesmo usando Docker/Sail para executar os aplicativos, instale no host o PHP, o Composer e o Node.js. Eles são necessários para preparar os projetos, instalar dependências e executar comandos antes de subir os containers.
 
@@ -619,7 +619,7 @@ npm -v
 
 ---
 
-## 15. Remmina
+### 15. Remmina
 
 Abra:
 
@@ -641,7 +641,7 @@ Se conecta normalmente, está pronto.
 
 ---
 
-## 16. MPV
+### 16. MPV
 
 Teste:
 
@@ -659,7 +659,7 @@ mpv --hwdec=auto video.mkv
 
 ---
 
-## 17. qBittorrent
+### 17. qBittorrent
 
 Abra o cliente de torrents:
 
@@ -669,7 +669,7 @@ qbittorrent
 
 ---
 
-## 18. Redshift (luz noturna)
+### 18. Redshift (luz noturna)
 
 Crie o diretório de configuração e salve o conteúdo abaixo em `~/.config/redshift/redshift.conf`:
 
@@ -697,9 +697,9 @@ redshift -c "$HOME/.config/redshift/redshift.conf"
 
 ---
 
-# PARTE F — Docker / Laravel
+## PARTE F — Docker / Laravel
 
-## 19. Docker Engine
+### 19. Docker Engine
 
 Prefira **Docker Engine**, não Docker Desktop.
 
@@ -776,7 +776,7 @@ docker compose version
 
 ---
 
-## 20. Laravel
+### 20. Laravel
 
 O Sail fornece PHP, MySQL e os demais serviços dentro dos containers, mas o host ainda deve ter PHP, Composer e Node/NVM para instalar e preparar as dependências dos projetos.
 
@@ -805,13 +805,13 @@ PHP, MySQL e os demais serviços de execução continuam isolados nos containers
 
 ---
 
-# PARTE G — Verificação final
+## PARTE G — Verificação final
 
-## 21. Checklist
+### 21. Checklist
 
 Antes de considerar a migração concluída:
 
-### Sistema
+#### Sistema
 
 - 5+ boots sem erro;
 - nenhum freeze;
@@ -819,7 +819,7 @@ Antes de considerar a migração concluída:
 - XFCE funciona suavemente;
 - resolução correta.
 
-### Hardware
+#### Hardware
 
 - NVIDIA funcionando;
 - áudio funcionando;
@@ -830,7 +830,7 @@ Antes de considerar a migração concluída:
 - NVMe sem erros;
 - SSD do Windows intacto.
 
-### Trabalho
+#### Trabalho
 
 - Git;
 - SSH;
@@ -842,7 +842,7 @@ Antes de considerar a migração concluída:
 - agents/CLI;
 - Remmina/RDP.
 
-### Multimídia
+#### Multimídia
 
 - MPV;
 - qBittorrent;
@@ -853,7 +853,7 @@ Antes de considerar a migração concluída:
 
 ---
 
-# PARTE H — Se ocorrer freeze/crash
+## PARTE H — Se ocorrer freeze/crash
 
 Depois de reiniciar, veja erros do boot anterior:
 
@@ -890,7 +890,7 @@ Se o mesmo tipo de crash continuar no Debian, aí investigue hardware: RAM, NVMe
 
 ---
 
-# PARTE I — Confirmar a combinação Debian + XFCE + X11
+## PARTE I — Confirmar a combinação Debian + XFCE + X11
 
 Antes de considerar a instalação concluída, rode:
 
@@ -937,7 +937,7 @@ Essa é a baseline recomendada para testar estabilidade antes de adicionar custo
 
 ---
 
-# Configuração recomendada
+## Configuração recomendada
 
 Para este PC:
 
