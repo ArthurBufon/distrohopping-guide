@@ -15,6 +15,46 @@ Antes de apagar o sistema antigo, sempre:
 
 As seções de aplicativos e ferramentas são condicionais: execute somente as que correspondem ao que você usa.
 
+## Índice
+
+- Preparação e dados essenciais
+  - [1. Pasta principal](#1-criar-uma-pasta-principal-de-backup)
+  - [2. Projetos](#2-projetos-de-desenvolvimento)
+  - [3. SSH](#3-ssh)
+  - [4. Git](#4-git)
+- Aplicativos e preferências
+  - [5. Cursor](#5-cursor)
+  - [6. Remmina](#6-remmina)
+  - [7. Obsidian](#7-obsidian)
+  - [8. Fontes](#8-fontes)
+  - [9. Shell e terminal](#9-shell--terminal)
+  - [14. Flatpak](#14-flatpak)
+  - [15. Snap](#15-snap)
+  - [16. Configurações de aplicativos](#16-configurações-de-aplicativos)
+  - [17. GNOME e atalhos](#17-gnome--atalhos-atuais-do-ubuntu)
+  - [18. VS Code](#18-vs-code)
+  - [24. Navegador](#24-navegador)
+- Desenvolvimento
+  - [10. Docker](#10-docker)
+  - [11. Bancos MySQL](#11-bancos-mysql)
+  - [12. Volumes Docker](#12-docker-volumes-importantes)
+  - [19. Node e npm](#19-node--npm)
+  - [20. Composer](#20-composer)
+  - [21. Flutter](#21-flutter)
+  - [22. Chaves Android e Flutter](#22-android--flutter-signing-keys)
+  - [23. Credenciais e secrets](#23-credenciais-e-secrets)
+- Sistema e diagnóstico
+  - [13. Pacotes APT](#13-pacotes-apt-instalados)
+  - [25. Serviços habilitados](#25-lista-de-serviços-habilitados)
+  - [26. Cron jobs](#26-cron-jobs)
+  - [27. Hosts personalizados](#27-hosts-personalizados)
+  - [28. Hardware](#28-lista-geral-do-hardware)
+- Conferência e restauração
+  - [29. Backup completo do HOME](#29-backup-completo-do-home)
+  - [30. Verificar o backup](#30-verificar-o-backup)
+  - [Checklist final](#checklist-final-antes-de-apagar-o-ubuntu)
+  - [Regra de restauração](#regra-para-restaurar-no-debian)
+
 ---
 
 # 1. Criar uma pasta principal de backup
