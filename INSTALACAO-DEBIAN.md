@@ -813,43 +813,43 @@ Antes de considerar a migração concluída:
 
 #### Sistema
 
-- 5+ boots sem erro;
-- nenhum freeze;
-- desligar/reiniciar funciona;
-- XFCE funciona suavemente;
-- resolução correta.
+- [ ] 5+ boots sem erro;
+- [ ] nenhum freeze;
+- [ ] desligar/reiniciar funciona;
+- [ ] XFCE funciona suavemente;
+- [ ] resolução correta.
 
 #### Hardware
 
-- NVIDIA funcionando;
-- áudio funcionando;
-- Ethernet/Wi-Fi;
-- Bluetooth;
-- teclado/mouse;
-- USB;
-- NVMe sem erros;
-- SSD do Windows intacto.
+- [ ] NVIDIA funcionando;
+- [ ] áudio funcionando;
+- [ ] Ethernet/Wi-Fi;
+- [ ] Bluetooth;
+- [ ] teclado/mouse;
+- [ ] USB;
+- [ ] NVMe sem erros;
+- [ ] SSD do Windows intacto.
 
 #### Trabalho
 
-- Git;
-- SSH;
-- Docker Engine;
-- Docker Compose;
-- projeto Laravel;
-- MySQL/container;
-- Cursor/editor;
-- agents/CLI;
-- Remmina/RDP.
+- [ ] Git;
+- [ ] SSH;
+- [ ] Docker Engine;
+- [ ] Docker Compose;
+- [ ] projeto Laravel;
+- [ ] MySQL/container;
+- [ ] Cursor/editor;
+- [ ] agents/CLI;
+- [ ] Remmina/RDP.
 
 #### Multimídia
 
-- MPV;
-- qBittorrent;
-- Redshift (luz noturna);
-- `.mkv`;
-- áudio;
-- vídeo em tela cheia.
+- [ ] MPV;
+- [ ] qBittorrent;
+- [ ] Redshift (luz noturna);
+- [ ] `.mkv`;
+- [ ] áudio;
+- [ ] vídeo em tela cheia.
 
 ---
 
