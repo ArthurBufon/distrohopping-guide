@@ -67,7 +67,7 @@ Exemplo:
 mkdir -p ~/backup-ubuntu
 ```
 
-Estrutura sugerida:
+Estrutura mínima criada pelos exemplos deste guia:
 
 ```text
 backup-ubuntu/
@@ -83,6 +83,8 @@ backup-ubuntu/
 ├── configs/
 └── listas/
 ```
+
+O backup usado na migração atual possui subdivisões adicionais, como `projetos/projects/`, `obsidian/vaults/`, `cursor/config-Cursor/` e `pessoal/`. Consulte o [inventário do backup restaurado](RESTAURACAO.md#o-que-existe-no-backup-atual) antes de adaptar os comandos de restauração. Em outro backup, mantenha uma estrutura consistente e ajuste os caminhos dos dois guias em conjunto.
 
 ---
 
