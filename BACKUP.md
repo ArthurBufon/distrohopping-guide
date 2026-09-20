@@ -880,3 +880,7 @@ testar
 ```
 
 Isso reduz muito a chance de carregar configurações incompatíveis ou problemas do Ubuntu 26 para o Debian.
+
+---
+
+[← Índice geral](README.md) · [Próxima etapa: instalar o Debian →](INSTALACAO-DEBIAN.md)

@@ -211,3 +211,7 @@ Em `configs/` também há `crontab.txt`, `cron.d/` e `hosts`. Revise as entradas
 - [ ] Extensões necessárias do Cursor e plugins do vault, se houver, aparecem e funcionam.
 - [ ] Bancos, volumes Docker e fontes têm uma fonte de recuperação confirmada, se forem necessários.
 - [ ] O backup original continua guardado fora do disco formatado.
+
+---
+
+[← Etapa anterior: instalação](INSTALACAO-DEBIAN.md) · [Índice geral](README.md)
