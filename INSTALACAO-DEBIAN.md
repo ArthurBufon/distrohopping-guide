@@ -4,6 +4,19 @@
 >
 > Cenário: PC mais antigo, NVIDIA GTX 1050, Windows em outro SSD, uso de Docker/Laravel/MySQL/Remmina/MPV e ferramentas de desenvolvimento.
 
+## Índice
+
+- [Antes de começar](#1-antes-de-começar)
+- [Parte A — Testar pelo Live USB](#parte-a--testar-pelo-live-usb)
+- [Parte B — Instalação no NVMe](#parte-b--instalação-no-nvme)
+- [Parte C — Primeira inicialização](#parte-c--primeira-inicialização)
+- [Parte D — Drivers e hardware](#parte-d--drivers-e-hardware)
+- [Parte E — Programas de trabalho](#parte-e--programas-de-trabalho)
+- [Parte F — Docker e Laravel](#parte-f--docker--laravel)
+- [Parte G — Verificação final](#parte-g--verificação-final)
+- [Parte H — Se ocorrer freeze ou crash](#parte-h--se-ocorrer-freezecrash)
+- [Parte I — Confirmar Debian, XFCE e X11](#parte-i--confirmar-a-combinação-debian--xfce--x11)
+
 ---
 
 ## 1. Antes de começar
