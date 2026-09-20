@@ -72,6 +72,8 @@ rsync -a --ignore-existing "$BACKUP/obsidian/vaults/" "$HOME/Documents/Obsidian/
 
 ## 3. Terminal, shell, Git e SSH
 
+### Kitty e fontes
+
 Instale o Kitty e o Zsh conforme [o guia de instalação](INSTALACAO-DEBIAN.md#terminal-kitty). Com o aplicativo fechado, copie sua configuração e sessões:
 
 ```bash
@@ -113,6 +115,8 @@ xfconf-query -c xfce4-keyboard-shortcuts \
   -p '/commands/custom/<Super>Return' -n -t string -s kitty
 ```
 
+### Shell e Git
+
 Em `shell/dotfiles/` estão `.bashrc`, `.zshrc` e `.profile`; em `shell/starship.toml` está a configuração do prompt. Compare cada arquivo com o novo sistema antes de copiar. Por exemplo, use `diff -u "$HOME/.zshrc" "$BACKUP/shell/dotfiles/.zshrc"` e só então copie os trechos desejados. Faça o mesmo com `git/.gitconfig`; o backup também tem `configs/config-completo/starship.toml`.
 
 Para restaurar somente o `.zshrc` diretamente do arquivo compactado:
@@ -124,6 +128,8 @@ zsh -n "$HOME/.zshrc"
 ```
 
 O `.zshrc` antigo referencia Starship, Cursor, NVM, `zsh-autosuggestions`, `zsh-syntax-highlighting` e `~/bin`. Se esses componentes ainda não existirem, comente as linhas e identifique-as como provenientes do backup; reative-as somente depois de instalar as dependências. Para habilitar sugestões e destaque no Debian, consulte [Sugestões e autocomplete no Zsh](INSTALACAO-DEBIAN.md#sugestoes-e-autocomplete-no-zsh). O arquivo restaurado nesta migração foi tratado dessa forma.
+
+### SSH
 
 As chaves estão em `ssh/.ssh/`. Copie sem substituir arquivos SSH já criados no sistema novo:
 
@@ -137,6 +143,8 @@ chmod 600 "$HOME/.ssh/id_ed25519"
 Se um arquivo já existia, compare as versões e decida qual usar. Teste a conexão com o host correspondente; verifique também `config`, `known_hosts` e a chave pública antes de usá-los.
 
 ## 4. Cursor, extensões e Remmina
+
+### Cursor e extensões
 
 Instale e abra o Cursor uma vez, depois feche-o. Faça uma cópia de `~/.config/Cursor/User` e `~/.cursor` se você já configurou algo no sistema novo. Importe as preferências e extensões salvas:
 
@@ -156,6 +164,8 @@ rsync -a --ignore-existing "$BACKUP/cursor/.cursor/agents/" "$HOME/.cursor/agent
 ```
 
 `cursor/.cursor/cli-config.json`, `argv.json`, `chats/`, `projects/` e o restante de `cursor/config-Cursor/` preservam configuração ou estado da instalação antiga; consulte-os apenas se precisar recuperar algo específico. Reabra o Cursor e confira settings, atalhos, skills e extensões.
+
+### Remmina
 
 Instale o Remmina e feche-o antes de copiar os perfis:
 
