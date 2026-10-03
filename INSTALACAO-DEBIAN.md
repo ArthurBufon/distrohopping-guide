@@ -247,10 +247,14 @@ uname -r
 
 Debian 13 já inclui firmware não livre nas imagens oficiais.
 
-Veja seus repositórios:
+No Debian 13, a instalação nova normalmente usa o formato `deb822` em `/etc/apt/sources.list.d/debian.sources`. Veja o arquivo usado pelo seu sistema:
 
 ```bash
-cat /etc/apt/sources.list
+if test -f /etc/apt/sources.list.d/debian.sources; then
+  cat /etc/apt/sources.list.d/debian.sources
+else
+  cat /etc/apt/sources.list
+fi
 
 ```
 
@@ -261,12 +265,18 @@ contrib non-free non-free-firmware
 
 ```
 
-Exemplo:
+Exemplo no formato esperado para uma instalação nova:
 
 ```text
-deb http://deb.debian.org/debian trixie main contrib non-free non-free-firmware
-deb http://security.debian.org/debian-security trixie-security main contrib non-free non-free-firmware
-deb http://deb.debian.org/debian trixie-updates main contrib non-free non-free-firmware
+Types: deb deb-src
+URIs: http://deb.debian.org/debian/
+Suites: trixie trixie-updates
+Components: main contrib non-free non-free-firmware
+
+Types: deb deb-src
+URIs: http://security.debian.org/debian-security/
+Suites: trixie-security
+Components: main contrib non-free non-free-firmware
 
 ```
 
