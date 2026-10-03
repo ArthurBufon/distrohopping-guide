@@ -149,7 +149,7 @@ As chaves estão em `ssh/.ssh/`. Copie sem substituir arquivos SSH já criados n
 install -d -m 700 "$HOME/.ssh"
 rsync -a --ignore-existing "$BACKUP/ssh/.ssh/" "$HOME/.ssh/"
 chmod 700 "$HOME/.ssh"
-chmod 600 "$HOME/.ssh/id_ed25519"
+find "$HOME/.ssh" -maxdepth 1 -type f -name 'id_*' ! -name '*.pub' -exec chmod 600 {} +
 ```
 
 Se um arquivo já existia, compare as versões e decida qual usar. Teste a conexão com o host correspondente; verifique também `config`, `known_hosts` e a chave pública antes de usá-los.

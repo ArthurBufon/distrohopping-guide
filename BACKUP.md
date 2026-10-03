@@ -139,7 +139,7 @@ Depois da migração, mantenha permissões corretas:
 
 ```bash
 chmod 700 ~/.ssh
-chmod 600 ~/.ssh/id_*
+find ~/.ssh -maxdepth 1 -type f -name 'id_*' ! -name '*.pub' -exec chmod 600 {} +
 ```
 
 Não aplique `chmod 600` em arquivos `.pub`.
