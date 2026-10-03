@@ -59,13 +59,16 @@ As seções de aplicativos e ferramentas são condicionais: execute somente as q
 
 ## 1. Criar uma pasta principal de backup
 
-Escolha um disco externo, outro SSD ou pendrive grande.
+Escolha e monte um disco externo, outro SSD ou pendrive grande. O destino não pode estar no disco que será formatado.
 
-Exemplo:
+Defina o caminho do backup uma vez e use `$BACKUP` nos comandos seguintes:
 
 ```bash
-mkdir -p ~/backup-ubuntu
+BACKUP="/media/$USER/Backup/backup-ubuntu"
+mkdir -p "$BACKUP"
 ```
+
+Ajuste `Backup` para o ponto de montagem real do seu disco externo.
 
 Estrutura mínima criada pelos exemplos deste guia:
 
@@ -106,7 +109,7 @@ Inclua:
 Exemplo:
 
 ```bash
-cp -a ~/Projetos ~/backup-ubuntu/projetos/
+cp -a ~/Projetos $BACKUP/projetos/
 ```
 
 Ajuste o caminho conforme sua estrutura real.
@@ -120,7 +123,7 @@ Muito importante.
 Copie:
 
 ```bash
-cp -a ~/.ssh ~/backup-ubuntu/ssh/
+cp -a ~/.ssh $BACKUP/ssh/
 ```
 
 Isso preserva:
@@ -147,13 +150,13 @@ Não aplique `chmod 600` em arquivos `.pub`.
 Copie:
 
 ```bash
-cp ~/.gitconfig ~/backup-ubuntu/git/
+cp ~/.gitconfig $BACKUP/git/
 ```
 
 Se existir:
 
 ```bash
-cp -a ~/.config/git ~/backup-ubuntu/git/
+cp -a ~/.config/git $BACKUP/git/
 ```
 
 ---
@@ -167,19 +170,19 @@ Antes de copiar:
 Salve:
 
 ```bash
-cp -a ~/.config/Cursor ~/backup-ubuntu/cursor/
+cp -a ~/.config/Cursor $BACKUP/cursor/
 ```
 
 Também:
 
 ```bash
-cp -a ~/.cursor ~/backup-ubuntu/cursor/
+cp -a ~/.cursor $BACKUP/cursor/
 ```
 
 Se existir:
 
 ```bash
-cp -a ~/.cursor/extensions ~/backup-ubuntu/cursor/
+cp -a ~/.cursor/extensions $BACKUP/cursor/
 ```
 
 Isso pode preservar:
@@ -210,13 +213,13 @@ Feche o Remmina antes do backup.
 Copie:
 
 ```bash
-cp -a ~/.config/remmina ~/backup-ubuntu/remmina/ 2>/dev/null
+cp -a ~/.config/remmina $BACKUP/remmina/ 2>/dev/null
 ```
 
 E:
 
 ```bash
-cp -a ~/.local/share/remmina ~/backup-ubuntu/remmina/ 2>/dev/null
+cp -a ~/.local/share/remmina $BACKUP/remmina/ 2>/dev/null
 ```
 
 Isso pode preservar:
@@ -255,7 +258,7 @@ Ela contém:
 Exemplo:
 
 ```bash
-cp -a ~/Documentos/Obsidian ~/backup-ubuntu/obsidian/
+cp -a ~/Documentos/Obsidian $BACKUP/obsidian/
 ```
 
 Ajuste o caminho.
@@ -265,7 +268,7 @@ Ajuste o caminho.
 Também copie:
 
 ```bash
-cp -a ~/.config/obsidian ~/backup-ubuntu/obsidian/ 2>/dev/null
+cp -a ~/.config/obsidian $BACKUP/obsidian/ 2>/dev/null
 ```
 
 ---
@@ -275,19 +278,19 @@ cp -a ~/.config/obsidian ~/backup-ubuntu/obsidian/ 2>/dev/null
 Fontes instaladas pelo usuário:
 
 ```bash
-cp -a ~/.local/share/fonts ~/backup-ubuntu/fonts/ 2>/dev/null
+cp -a ~/.local/share/fonts $BACKUP/fonts/ 2>/dev/null
 ```
 
 Se existir:
 
 ```bash
-cp -a ~/.fonts ~/backup-ubuntu/fonts/ 2>/dev/null
+cp -a ~/.fonts $BACKUP/fonts/ 2>/dev/null
 ```
 
 Também gere uma lista:
 
 ```bash
-fc-list > ~/backup-ubuntu/listas/fontes-instaladas.txt
+fc-list > $BACKUP/listas/fontes-instaladas.txt
 ```
 
 ---
@@ -297,22 +300,22 @@ fc-list > ~/backup-ubuntu/listas/fontes-instaladas.txt
 Salve:
 
 ```bash
-cp ~/.bashrc ~/backup-ubuntu/shell/ 2>/dev/null
-cp ~/.profile ~/backup-ubuntu/shell/ 2>/dev/null
-cp ~/.bash_aliases ~/backup-ubuntu/shell/ 2>/dev/null
-cp ~/.zshrc ~/backup-ubuntu/shell/ 2>/dev/null
+cp ~/.bashrc $BACKUP/shell/ 2>/dev/null
+cp ~/.profile $BACKUP/shell/ 2>/dev/null
+cp ~/.bash_aliases $BACKUP/shell/ 2>/dev/null
+cp ~/.zshrc $BACKUP/shell/ 2>/dev/null
 ```
 
 Se usa Oh My Zsh:
 
 ```bash
-cp -a ~/.oh-my-zsh ~/backup-ubuntu/shell/ 2>/dev/null
+cp -a ~/.oh-my-zsh $BACKUP/shell/ 2>/dev/null
 ```
 
 Se usa Starship:
 
 ```bash
-cp ~/.config/starship.toml ~/backup-ubuntu/shell/ 2>/dev/null
+cp ~/.config/starship.toml $BACKUP/shell/ 2>/dev/null
 ```
 
 ---
@@ -340,9 +343,9 @@ docker images
 Salve essas listas:
 
 ```bash
-docker ps -a > ~/backup-ubuntu/listas/docker-containers.txt
-docker volume ls > ~/backup-ubuntu/listas/docker-volumes.txt
-docker images > ~/backup-ubuntu/listas/docker-images.txt
+docker ps -a > $BACKUP/listas/docker-containers.txt
+docker volume ls > $BACKUP/listas/docker-volumes.txt
+docker images > $BACKUP/listas/docker-images.txt
 ```
 
 ---
@@ -356,20 +359,20 @@ Exemplo:
 ```bash
 docker exec NOME_CONTAINER \
   mysqldump -u root -p --all-databases \
-  > ~/backup-ubuntu/docker/mysql-all-databases.sql
+  > $BACKUP/docker/mysql-all-databases.sql
 ```
 
 Se usa MySQL instalado diretamente no Ubuntu:
 
 ```bash
 mysqldump -u root -p --all-databases \
-  > ~/backup-ubuntu/docker/mysql-all-databases.sql
+  > $BACKUP/docker/mysql-all-databases.sql
 ```
 
 Teste se o arquivo foi criado:
 
 ```bash
-ls -lh ~/backup-ubuntu/docker/mysql-all-databases.sql
+ls -lh $BACKUP/docker/mysql-all-databases.sql
 ```
 
 Não confie somente em copiar containers.
@@ -391,7 +394,7 @@ Exemplo de backup:
 ```bash
 docker run --rm \
   -v NOME_DO_VOLUME:/volume \
-  -v ~/backup-ubuntu/docker:/backup \
+  -v $BACKUP/docker:/backup \
   alpine \
   tar czf /backup/NOME_DO_VOLUME.tar.gz -C /volume .
 ```
@@ -406,14 +409,14 @@ Gere uma lista:
 
 ```bash
 apt-mark showmanual \
-  > ~/backup-ubuntu/listas/apt-manual-packages.txt
+  > $BACKUP/listas/apt-manual-packages.txt
 ```
 
 Também:
 
 ```bash
 dpkg --get-selections \
-  > ~/backup-ubuntu/listas/dpkg-selections.txt
+  > $BACKUP/listas/dpkg-selections.txt
 ```
 
 Essas listas servem como referência.
@@ -430,13 +433,13 @@ Lista:
 
 ```bash
 flatpak list --app --columns=application \
-  > ~/backup-ubuntu/listas/flatpak-apps.txt
+  > $BACKUP/listas/flatpak-apps.txt
 ```
 
 Se usa configurações importantes de aplicativos Flatpak:
 
 ```bash
-cp -a ~/.var/app ~/backup-ubuntu/configs/flatpak-app-data
+cp -a ~/.var/app $BACKUP/configs/flatpak-app-data
 ```
 
 Restaurar isso deve ser feito seletivamente.
@@ -448,7 +451,7 @@ Restaurar isso deve ser feito seletivamente.
 Se usa Snap:
 
 ```bash
-snap list > ~/backup-ubuntu/listas/snap-packages.txt
+snap list > $BACKUP/listas/snap-packages.txt
 ```
 
 No Debian, prefira reinstalar os aplicativos via:
@@ -477,15 +480,15 @@ Não recomendo restaurar essas pastas inteiras no Debian.
 Em vez disso, faça uma cópia de segurança completa:
 
 ```bash
-cp -a ~/.config ~/backup-ubuntu/configs/config-completo
+cp -a ~/.config $BACKUP/configs/config-completo
 ```
 
 ```bash
-cp -a ~/.local/share ~/backup-ubuntu/configs/local-share-completo
+cp -a ~/.local/share $BACKUP/configs/local-share-completo
 ```
 
 ```bash
-cp -a ~/.local/state ~/backup-ubuntu/configs/local-state-completo 2>/dev/null
+cp -a ~/.local/state $BACKUP/configs/local-state-completo 2>/dev/null
 ```
 
 Depois restaure **somente aplicativos específicos** conforme necessário.
@@ -500,14 +503,14 @@ Mas salve uma referência:
 
 ```bash
 dconf dump / \
-  > ~/backup-ubuntu/configs/dconf-ubuntu.txt
+  > $BACKUP/configs/dconf-ubuntu.txt
 ```
 
 Extensões GNOME:
 
 ```bash
 gnome-extensions list \
-  > ~/backup-ubuntu/listas/gnome-extensions.txt
+  > $BACKUP/listas/gnome-extensions.txt
 ```
 
 Isso serve apenas para consulta futura.
@@ -521,14 +524,14 @@ O backup usado neste roteiro também contém `atalhos/` com os atalhos exportado
 Se também usa VS Code:
 
 ```bash
-cp -a ~/.config/Code ~/backup-ubuntu/configs/ 2>/dev/null
+cp -a ~/.config/Code $BACKUP/configs/ 2>/dev/null
 ```
 
 Extensões:
 
 ```bash
 code --list-extensions \
-  > ~/backup-ubuntu/listas/vscode-extensions.txt
+  > $BACKUP/listas/vscode-extensions.txt
 ```
 
 ---
@@ -539,13 +542,13 @@ Liste pacotes globais:
 
 ```bash
 npm list -g --depth=0 \
-  > ~/backup-ubuntu/listas/npm-global.txt
+  > $BACKUP/listas/npm-global.txt
 ```
 
 Se usa NVM:
 
 ```bash
-cp -a ~/.nvm ~/backup-ubuntu/configs/ 2>/dev/null
+cp -a ~/.nvm $BACKUP/configs/ 2>/dev/null
 ```
 
 Em geral é melhor reinstalar NVM/Node limpos no Debian.
@@ -558,13 +561,13 @@ Liste pacotes globais:
 
 ```bash
 composer global show \
-  > ~/backup-ubuntu/listas/composer-global.txt 2>/dev/null
+  > $BACKUP/listas/composer-global.txt 2>/dev/null
 ```
 
 Configuração:
 
 ```bash
-cp -a ~/.config/composer ~/backup-ubuntu/configs/ 2>/dev/null
+cp -a ~/.config/composer $BACKUP/configs/ 2>/dev/null
 ```
 
 ---
@@ -575,7 +578,7 @@ Confira instalação:
 
 ```bash
 flutter doctor -v \
-  > ~/backup-ubuntu/listas/flutter-doctor.txt
+  > $BACKUP/listas/flutter-doctor.txt
 ```
 
 Se Flutter estiver instalado manualmente em alguma pasta, anote:
@@ -601,7 +604,7 @@ Se desenvolve Android, verifique:
 Backup:
 
 ```bash
-cp -a ~/.android ~/backup-ubuntu/configs/ 2>/dev/null
+cp -a ~/.android $BACKUP/configs/ 2>/dev/null
 ```
 
 Muito importante verificar também arquivos `.jks` ou `.keystore`.
@@ -656,19 +659,19 @@ Se usa sincronização do Chrome/Firefox, confirme que está logado e sincroniza
 Se quiser backup local do Chrome:
 
 ```bash
-cp -a ~/.config/google-chrome ~/backup-ubuntu/configs/ 2>/dev/null
+cp -a ~/.config/google-chrome $BACKUP/configs/ 2>/dev/null
 ```
 
 Chromium:
 
 ```bash
-cp -a ~/.config/chromium ~/backup-ubuntu/configs/ 2>/dev/null
+cp -a ~/.config/chromium $BACKUP/configs/ 2>/dev/null
 ```
 
 Firefox:
 
 ```bash
-cp -a ~/.mozilla ~/backup-ubuntu/configs/ 2>/dev/null
+cp -a ~/.mozilla $BACKUP/configs/ 2>/dev/null
 ```
 
 Restaurar perfis completos entre distribuições deve ser feito com cuidado.
@@ -681,7 +684,7 @@ Restaurar perfis completos entre distribuições deve ser feito com cuidado.
 
 ```bash
 systemctl list-unit-files --state=enabled \
-  > ~/backup-ubuntu/listas/systemd-enabled.txt
+  > $BACKUP/listas/systemd-enabled.txt
 ```
 
 ---
@@ -692,13 +695,13 @@ Usuário atual:
 
 ```bash
 crontab -l \
-  > ~/backup-ubuntu/configs/crontab.txt 2>/dev/null
+  > $BACKUP/configs/crontab.txt 2>/dev/null
 ```
 
 Sistema:
 
 ```bash
-sudo cp -a /etc/cron.d ~/backup-ubuntu/configs/cron.d 2>/dev/null
+sudo cp -a /etc/cron.d $BACKUP/configs/cron.d 2>/dev/null
 ```
 
 ---
@@ -714,8 +717,8 @@ Se você editou:
 salve:
 
 ```bash
-sudo cp /etc/hosts ~/backup-ubuntu/configs/hosts
-sudo chown "$USER":"$USER" ~/backup-ubuntu/configs/hosts
+sudo cp /etc/hosts $BACKUP/configs/hosts
+sudo chown "$USER":"$USER" $BACKUP/configs/hosts
 ```
 
 ---
@@ -725,20 +728,20 @@ sudo chown "$USER":"$USER" ~/backup-ubuntu/configs/hosts
 Muito útil para comparar Ubuntu vs Debian.
 
 ```bash
-lspci -k > ~/backup-ubuntu/listas/lspci-k.txt
+lspci -k > $BACKUP/listas/lspci-k.txt
 ```
 
 ```bash
-lsusb > ~/backup-ubuntu/listas/lsusb.txt
+lsusb > $BACKUP/listas/lsusb.txt
 ```
 
 ```bash
 lsblk -o NAME,SIZE,MODEL,FSTYPE,MOUNTPOINTS \
-  > ~/backup-ubuntu/listas/lsblk.txt
+  > $BACKUP/listas/lsblk.txt
 ```
 
 ```bash
-uname -a > ~/backup-ubuntu/listas/uname.txt
+uname -a > $BACKUP/listas/uname.txt
 ```
 
 ---
@@ -780,13 +783,13 @@ Use-o como:
 Antes de formatar:
 
 ```bash
-du -sh ~/backup-ubuntu
+du -sh $BACKUP
 ```
 
 Confira manualmente:
 
 ```bash
-ls -lah ~/backup-ubuntu
+ls -lah $BACKUP
 ```
 
 Se estiver em disco externo:
