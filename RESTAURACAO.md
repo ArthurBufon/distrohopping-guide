@@ -26,6 +26,18 @@ tar --zstd -tf "$BACKUP_ARCHIVE" | sed -n '1,40p'
 
 Os caminhos dentro do arquivo começam com `backup-ubuntu/`. Para usar os comandos desta página, extraia o arquivo inteiro para uma pasta temporária, ou adapte os comandos com `tar --zstd -xOf`/`--strip-components` conforme os exemplos da seção de Kitty e shell abaixo.
 
+Para seguir todas as etapas que usam `$BACKUP`, extraia o arquivo em uma pasta temporária de um disco com espaço suficiente:
+
+```bash
+EXTRACAO="/media/$USER/Backup/restauracao-temporaria"
+mkdir -p "$EXTRACAO"
+tar --zstd -xf "$BACKUP_ARCHIVE" -C "$EXTRACAO"
+BACKUP="$EXTRACAO/backup-ubuntu"
+test -d "$BACKUP/obsidian/vaults" && ls "$BACKUP"
+```
+
+Ajuste `Backup` para o ponto de montagem disponível. Depois desse teste, continue pelas etapas de dados e aplicativos normalmente.
+
 ## O que existe no backup atual
 
 Inventário de `~/backup-ubuntu` em 18/09/2026. A pasta pode mudar depois de outro backup.
