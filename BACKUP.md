@@ -66,6 +66,7 @@ Defina o caminho do backup uma vez e use `$BACKUP` nos comandos seguintes:
 ```bash
 BACKUP="/media/$USER/Backup/backup-ubuntu"
 mkdir -p "$BACKUP"
+mkdir -p "$BACKUP"/{projetos,ssh,git,cursor,remmina,obsidian,fonts,shell,docker,configs,listas}
 ```
 
 Ajuste `Backup` para o ponto de montagem real do seu disco externo.
